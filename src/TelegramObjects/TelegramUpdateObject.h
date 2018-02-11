@@ -9,7 +9,7 @@ class TelegramUpdateObject
 {
 public:
     TelegramUpdateObject(JsonObject& updateObject);
-    int m_UpdateId;
+    long m_UpdateId;
     TelegramMessageObject m_Message;
     TelegramMessageObject m_EditedMessage;
     TelegramMessageObject m_ChannelPost;
