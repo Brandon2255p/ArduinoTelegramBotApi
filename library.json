@@ -1,0 +1,23 @@
+{
+	"name": "TelegramBotApi",
+	"keywords": "telegram, bot, api",
+	"description": "Arduino Library for Telegram Bot API - this is NOT affiliated with Telegram",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Brandon2255p/ArduinoTelegramBotApi.git"
+	},
+	"authors": [{
+		"name": "Brandon Piner",
+		"email": "brandon2255p@gmail.com",
+		"url": "https://github.com/Brandon2255p",
+		"maintainer": true
+	}],
+	"dependencies": {
+		"name": "ArduinoJson",
+		"authors": " Benoit Blanchon",
+		"frameworks": "arduino"
+	},
+	"version": "3.5.0",
+	"frameworks": "arduino",
+	"platforms": "espressif8266"
+}
