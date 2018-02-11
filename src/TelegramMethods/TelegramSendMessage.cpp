@@ -2,17 +2,46 @@
 #include "Arduino.h"
 
 TelegramSendMessage::TelegramSendMessage() :
-    ConnectionBase("sendMessage")
+    ConnectionBase("sendMessage"),
+    m_hasReplyMarkup(false),
+    m_hasChatId(false),
+    m_hasText(false)
 {
 }
 
-void TelegramSendMessage::SendMessage(int chatId, const String &text)
+TelegramSendMessage TelegramSendMessage::SetChatId(long chatId)
 {
-    Serial.print("[HTTP] begin...\n");
-    Serial.print("[HTTP] GET...\n");
-    // start connection and send HTTP header
+    m_chatId = chatId;
+    m_hasChatId = true;
+    return *this;
+}
 
-    String result = GET("?chat_id=" + String(chatId) + "&text=" + text);
+TelegramSendMessage TelegramSendMessage::SetText(const String &text)
+{
+    m_text = text;
+    m_hasText = true;
+    return *this;
+}
+
+
+TelegramSendMessage TelegramSendMessage::SetReplyMarkup(const String &replyMarkupJson)
+{
+    m_replyMarkup = replyMarkupJson;
+    m_hasReplyMarkup = true;
+    return *this;
+}
+
+void TelegramSendMessage::SendMessage()
+{
+    String parameters = "?";
+    if(m_hasChatId)
+        parameters += "&chat_id=" + String(m_chatId);
+    if(m_hasText)
+        parameters += "&text=" + m_text;
+    if(m_hasReplyMarkup)
+        parameters += "&reply_markup=" + m_replyMarkup;
+
+    String result = GET(parameters);
 }
 
 TelegramSendMessage TelegramSendMessage::Builder()

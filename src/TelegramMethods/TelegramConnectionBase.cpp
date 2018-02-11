@@ -3,6 +3,13 @@
 
 #define USE_SERIAL Serial
 
+String ConnectionBase::m_Token = "";
+
+void ConnectionBase::SetToken(String &token)
+{
+    m_Token = token;
+}
+
 String ConnectionBase::GET(const String parameters){
     yield();
     HTTPClient http;
